@@ -204,6 +204,21 @@ class TestCompileHelpers(object):
         self.assert_exists(self.build_dir, 'app.php')
         eq_(1, len(os.listdir(self.build_dir)))
 
+    def test_convert_php_extensions_53(self):
+        ctx = {
+            'PHP_VERSION': '5.3.x',
+            'PHP_EXTENSIONS': ['mod1', 'mod2', 'mod3'],
+            'ZEND_EXTENSIONS': ['zmod1', 'zmod2']
+        }
+        convert_php_extensions(ctx)
+        eq_('extension=mod1.so\nextension=mod2.so\nextension=mod3.so',
+            ctx['PHP_EXTENSIONS'])
+        eq_('zend_extension="@HOME/php/lib/php/extensions/'
+            'no-debug-non-zts-20100525/zmod1.so"\n'
+            'zend_extension="@HOME/php/lib/php/extensions/'
+            'no-debug-non-zts-20100525/zmod2.so"',
+            ctx['ZEND_EXTENSIONS'])
+
     def test_convert_php_extensions_54(self):
         ctx = {
             'PHP_VERSION': '5.4.x',
@@ -231,6 +246,16 @@ class TestCompileHelpers(object):
         eq_('zend_extension="zmod1.so"\nzend_extension="zmod2.so"',
             ctx['ZEND_EXTENSIONS'])
 
+    def test_convert_php_extensions_53_none(self):
+        ctx = {
+            'PHP_VERSION': '5.3.x',
+            'PHP_EXTENSIONS': [],
+            'ZEND_EXTENSIONS': []
+        }
+        convert_php_extensions(ctx)
+        eq_('', ctx['PHP_EXTENSIONS'])
+        eq_('', ctx['ZEND_EXTENSIONS'])
+
     def test_convert_php_extensions_54_none(self):
         ctx = {
             'PHP_VERSION': '5.4.x',
@@ -250,6 +275,18 @@ class TestCompileHelpers(object):
         convert_php_extensions(ctx)
         eq_('', ctx['PHP_EXTENSIONS'])
         eq_('', ctx['ZEND_EXTENSIONS'])
+
+    def test_convert_php_extensions_53_one(self):
+        ctx = {
+            'PHP_VERSION': '5.3.x',
+            'PHP_EXTENSIONS': ['mod1'],
+            'ZEND_EXTENSIONS': ['zmod1']
+        }
+        convert_php_extensions(ctx)
+        eq_('extension=mod1.so', ctx['PHP_EXTENSIONS'])
+        eq_('zend_extension="@HOME/php/lib/php/extensions/'
+            'no-debug-non-zts-20100525/zmod1.so"',
+            ctx['ZEND_EXTENSIONS'])
 
     def test_convert_php_extensions_54_one(self):
         ctx = {

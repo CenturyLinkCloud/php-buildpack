@@ -68,6 +68,12 @@ class PHPExtension(ExtensionHelper):
         validate_php_version(ctx)
         print 'PHP %s' % (ctx['PHP_VERSION'])
 
+        if ctx['PHP_VERSION'].startswith('5.3'):
+            print('DEPRECATION WARNING: PHP 5.3 has been declared "End of Life" as of 2014-08-14')
+            print('DEPRECATION WARNING: See https://secure.php.net/supported-versions.php for more details')
+            print('DEPRECATION WARNING: Upgrade guide can be found at https://php.net/migration54')
+            print('DEPRECATION WARNING: Continued use of 5.3 is considered unsupported and the php-buildpack will no longer support PHP 5.3 after this date')
+
         if ctx['PHP_VERSION'].startswith('5.4'):
             print('DEPRECATION WARNING: PHP 5.4 is being declared "End of Life" as of 2015-09-14')
             print('DEPRECATION WARNING: See https://secure.php.net/supported-versions.php for more details')

@@ -80,6 +80,13 @@ dependencies:
     cf_stacks:
       - cflinuxfs2
     md5: 3d0b10452d57e3c783f480b8166e35b1
+  - name: php
+    version: 5.3.29
+    uri: https://cf-blobs.canada.os.ctl.io/binaries/php/php-5.3.29-linux-x64-1445387744.tgz
+    modules: ["bz2", "curl", "dba", "exif", "fileinfo", "ftp", "gd", "gettext", "gmp", "imap", "ldap", "mbstring", "mcrypt", "mysql", "mysqli", "openssl", "pcntl", "pdo", "pdo_mysql", "pdo_pgsql", "pdo_sqlite", "pgsql", "pspell", "readline", "snmp", "soap", "sockets", "xsl", "zip", "zlib", "lua", "suhosin", "msgpack", "xdebug", "imagick", "yaf", "redis", "memcache", "igbinary", "ioncube", "phpiredis", "xcache", "apcu", "protobuf", "protocolbuffers", "mailparse", "mongo", "amqp", "zookeeper", "phalcon", "xhprof", "twig", "sundown", "memcached", "opcache", "apc", "intl"]
+    cf_stacks:
+      - cflinuxfs2
+    md5: dbc56316d86c6913fb0146138000dce6
   - name: nginx
     version: 1.8.0
     uri: https://pivotal-buildpacks.s3.amazonaws.com/concourse-binaries/nginx/nginx-1.8.0-linux-x64.tgz
