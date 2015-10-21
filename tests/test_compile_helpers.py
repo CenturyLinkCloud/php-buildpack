@@ -214,9 +214,9 @@ class TestCompileHelpers(object):
         eq_('extension=mod1.so\nextension=mod2.so\nextension=mod3.so',
             ctx['PHP_EXTENSIONS'])
         eq_('zend_extension="@HOME/php/lib/php/extensions/'
-            'no-debug-non-zts-20100525/zmod1.so"\n'
+            'no-debug-non-zts-20090626/zmod1.so"\n'
             'zend_extension="@HOME/php/lib/php/extensions/'
-            'no-debug-non-zts-20100525/zmod2.so"',
+            'no-debug-non-zts-20090626/zmod2.so"',
             ctx['ZEND_EXTENSIONS'])
 
     def test_convert_php_extensions_54(self):
@@ -285,7 +285,7 @@ class TestCompileHelpers(object):
         convert_php_extensions(ctx)
         eq_('extension=mod1.so', ctx['PHP_EXTENSIONS'])
         eq_('zend_extension="@HOME/php/lib/php/extensions/'
-            'no-debug-non-zts-20100525/zmod1.so"',
+            'no-debug-non-zts-20090626/zmod1.so"',
             ctx['ZEND_EXTENSIONS'])
 
     def test_convert_php_extensions_54_one(self):
